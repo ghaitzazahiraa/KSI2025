@@ -23,8 +23,8 @@
     <?php
     // Data Mahasiswa (array sederhana)
     $mahasiswa = [
-        ["NIM" => "231001001", "Nama" => "Zahira Ghaitaza", "Prodi" => "Sistem Informasi"],
-        ["NIM" => "231001002", "Nama" => "Rafi Ahmad", "Prodi" => "Informatika"],
+        ["NIM" => "231001001", "Nama" => "Ghaitza Zahira", "Prodi" => "Sistem Informasi"],
+        ["NIM" => "231001002", "Nama" => "Ris Larasati", "Prodi" => "Informatika"],
         ["NIM" => "231001003", "Nama" => "Nadia Putri", "Prodi" => "Teknik Komputer"]
     ];
     ?>
