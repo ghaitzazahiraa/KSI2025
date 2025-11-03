@@ -1,56 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Mahasiswa - KSI 2025</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<?php
+// File: tambah_data.php
+// Simulasi koneksi ke database
+include 'koneksi.php'; // kalau nanti pakai DB asli
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">KSI 2025</a>
-  </div>
-</nav>
+// Data Mahasiswa sementara
+$mahasiswa = [
+    ["NIM" => "231001001", "Nama" => "Ghaitza Zahira", "Prodi" => "Sistem Informasi"],
+    ["NIM" => "231001002", "Nama" => "Ris Larasati", "Prodi" => "Informatika"],
+    ["NIM" => "231001003", "Nama" => "Nadia Putri", "Prodi" => "Teknik Komputer"]
+];
 
-<!-- Content -->
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Daftar Mahasiswa</h2>
-
- <?php
-// Panggil file koneksi database
-include 'koneksi.php';
-
-// Data Mahasiswa awal
-$mahasiswa = [];
-
-// Coba ambil data dari tabel "mahasiswa" jika ada
-$query = "SELECT nim, nama, prodi FROM mahasiswa";
-$result = $conn->query($query);
-
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $mahasiswa[] = $row;
-    }
-} else {
-    // Data Mahasiswa sementara jika DB kosong
-    $mahasiswa = [
-        ["NIM" => "231001001", "Nama" => "Ghaitza Zahira", "Prodi" => "Sistem Informasi"],
-        ["NIM" => "231001002", "Nama" => "Ris Larasati", "Prodi" => "Informatika"],
-        ["NIM" => "231001003", "Nama" => "Nadia Putri", "Prodi" => "Teknik Komputer"]
-    ];
-}
-
-// Jika form disubmit
+// Proses form submit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nim = $_POST["nim"];
     $nama = $_POST["nama"];
     $prodi = $_POST["prodi"];
 
-    // Simulasi insert ke array (belum ke database)
+    // Simulasi insert ke array
     $mahasiswa[] = ["NIM" => $nim, "Nama" => $nama, "Prodi" => $prodi];
 }
 ?>
@@ -60,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Mahasiswa - KSI 2025</title>
+    <title>Tambah Data Mahasiswa - KSI 2025</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Daftar Mahasiswa</h2>
+    <h2 class="text-center mb-4">Tambah Data Mahasiswa</h2>
 
     <!-- Form Tambah Data -->
     <form method="post" class="mb-4">
@@ -105,10 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tbody>
     </table>
 </div>
-
-<footer class="bg-dark text-white text-center py-3 mt-5">
-    <p class="mb-0">&copy; 2025 KSI Project | Zahira</p>
-</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
