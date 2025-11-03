@@ -21,12 +21,29 @@
     <h2 class="text-center mb-4">Daftar Mahasiswa</h2>
 
     <?php
-    // Data Mahasiswa (array sederhana)
-    $mahasiswa = [
-        ["NIM" => "231001001", "Nama" => "Ghaitza Zahira", "Prodi" => "Sistem Informasi"],
-        ["NIM" => "231001002", "Nama" => "Ris Larasati", "Prodi" => "Informatika"],
-        ["NIM" => "231001003", "Nama" => "Nadia Putri", "Prodi" => "Teknik Komputer"]
-    ];
+    // Panggil file koneksi database
+    include 'koneksi.php';
+
+    // Ambil data dari database (simulasi dulu)
+    // Jika database kosong, gunakan array sementara
+    $mahasiswa = [];
+
+    // Coba ambil data dari tabel "mahasiswa" jika ada
+    $query = "SELECT nim, nama, prodi FROM mahasiswa";
+    $result = $conn->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $mahasiswa[] = $row;
+        }
+    } else {
+        // Data Mahasiswa (sementara dari array jika DB kosong)
+        $mahasiswa = [
+            ["NIM" => "231001001", "Nama" => "Ghaitza Zahira", "Prodi" => "Sistem Informasi"],
+            ["NIM" => "231001002", "Nama" => "Ris Larasati", "Prodi" => "Informatika"],
+            ["NIM" => "231001003", "Nama" => "Nadia Putri", "Prodi" => "Teknik Komputer"]
+        ];
+    }
     ?>
 
     <table class="table table-striped table-bordered">
