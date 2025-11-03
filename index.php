@@ -27,8 +27,37 @@
         ["NIM" => "231001002", "Nama" => "Ris Larasati", "Prodi" => "Informatika"],
         ["NIM" => "231001003", "Nama" => "Nadia Putri", "Prodi" => "Teknik Komputer"]
     ];
+
+    // Jika form disubmit
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nim = $_POST["nim"];
+        $nama = $_POST["nama"];
+        $prodi = $_POST["prodi"];
+
+        // Simulasi insert ke array (belum ke database)
+        $mahasiswa[] = ["NIM" => $nim, "Nama" => $nama, "Prodi" => $prodi];
+    }
     ?>
 
+    <!-- Form Tambah Data -->
+    <form method="post" class="mb-4">
+        <div class="row g-2">
+            <div class="col-md-3">
+                <input type="text" name="nim" class="form-control" placeholder="NIM" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="nama" class="form-control" placeholder="Nama" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="prodi" class="form-control" placeholder="Program Studi" required>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Tambah Data</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tabel Mahasiswa -->
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
