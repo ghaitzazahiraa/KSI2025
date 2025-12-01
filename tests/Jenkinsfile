@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/ghatzzahzahrira/KSI2025.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                powershell '''
+                    cd "${env.WORKSPACE}"
+                    composer install
+                '''
+            }
+        }
+
+        stage('Run PHPUnit Tests') {
+            steps {
+                powershell '''
+                    cd "${env.WORKSPACE}"
+                    vendor\\bin\\phpunit
+                '''
+            }
+        }
+
+        stage('Run PHP App') {
+            steps {
+                powershell '''
+                    php index.php
+                '''
+            }
+        }
+    }
+}
